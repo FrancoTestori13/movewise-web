@@ -1,103 +1,130 @@
-import Image from "next/image";
+import Navbar from "./components/navbar";
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <>
+      <Navbar />
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
+      <section className="w-full bg-sky-900 py-16 px-6 md:px-20 mt-10">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-start justify-between gap-12">
+          
+          <div className=" flex-2 flex items-start justify-center">
+            <img
+              src="/imghome.png"
+              alt="Mudanza organizada"
+              className="w-full h-auto object-contain"
             />
-            Deploy now
-          </a>
+          </div>
+
+          <div className="flex-1 items-center text-center justify-start">
+            <h1 className=" md:text-5xl font-bold text-white mb-30">
+              Organiza tu Mudanza con Eficiencia
+            </h1>
+            <div className="bg-white/10 rounded-2xl p-6">
+              <p className="md:text-2xl text-white mb-6">
+                Simplifica tu mudanza con el poder de la inteligencia artificial. Crea inventarios, genera etiquetas QR y mantén todo bajo control.
+              </p>
+              <a
+                href="/login"
+                className="bg-rose-600 text-white px-6 py-3 rounded-lg font-semibold hover:opacity-90 transition"
+              >
+                Empezar ahora
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="w-full bg-white py-16 px-6 md:px-20">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-start justify-between gap-12">
+          
+          <div className=" flex-2 flex items-start justify-center">
+            <img
+              src="/imghome2.png"
+              alt="Mudanza organizada"
+              className="w-full h-auto object-contain"
+            />
+          </div>
+
+          <div className="flex-1 items-center">
+            <h1 className="md:text-5xl font-bold text-rose-600 mb-30">
+              Registro de Cajas, Mobiliario y Objetos
+            </h1>
+            <div>
+              <p className="md:text-3xl text-neutral-700 mb-6">
+                Los usuarios pueden organizar y clasificar los objetos antes de la mudanza, asegurando que cada artículo esté correctamente identificado y registrado.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="w-full bg-white py-20 px-6 md:px-20">
+        <div className="max-w-7xl mx-auto text-center">
+          <h1 className="text-5xl font-bold text-rose-600 mb-6">
+            Reconocimiento de Objetos con IA
+          </h1>
+          <p className="text-2xl text-neutral-700 mb-12">
+            Utilizando inteligencia artificial, la aplicación movil puede identificar y etiquetar automáticamente los objetos dentro de las cajas. Esto ayuda       a crear un inventario preciso sin la necesidad de registrar manualmente cada artículo
+          </p>
+
+          <div className="flex flex-col md:flex-row justify-center items-center gap-60">
+            <div className="flex flex-col items-center">
+              <img src="/icon1.png" alt="Cajas" className="w-25 h-25 mb-4" />
+            </div>
+
+            <div className="flex flex-col items-center">
+              <img src="/icon2.png" alt="IA" className="w-25 h-25 mb-4" />
+            </div>
+
+            <div className="flex flex-col items-center">
+              <img src="/icon3.png" alt="Task" className="w-27 h-27 mb-4 " />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="w-full bg-white py-16 px-6 md:px-20">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-start justify-between gap-12">
+          
+          <div className=" flex-2 flex items-start justify-center">
+            <img
+              src="/imghome3.png"
+              alt="Mudanza organizada"
+              className="w-full h-auto object-contain"
+            />
+          </div>
+
+          <div className="flex-1 items-center">
+            <h1 className="md:text-5xl font-bold text-rose-600 mb-30">
+              Generación de Etiquetas QR
+            </h1>
+            <div>
+              <p className="md:text-3xl text-neutral-700 mb-6">
+              La aplicación genera etiquetas QR personalizadas para cada caja, las cuales pueden ser impresas y pegadas en las cajas. Estas etiquetas permiten escanear y acceder rápidamente al contenido de cada caja.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <footer className="w-full bg-sky-900 py-24 px-6 md:px-20">
+        <div className="relative max-w-md mx-auto flex flex-col items-center justify-center text-center bg-white p-10 rounded-2xl">
+          <img
+            src="/imgqr.png" 
+            alt="Logo"
+            className="w-40 h-40 object-contain mb-6"
+          />
+
           <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="/descargar"
+            className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 bg-rose-600 text-white px-6 py-3 rounded-lg font-semibold shadow-lg       hover:opacity-90 transition"
           >
-            Read our docs
+            Descargar aplicación
           </a>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
       </footer>
-    </div>
+
+
+    </>
   );
 }
