@@ -1,6 +1,48 @@
+"use client";
+import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 import Navbar from "../components/navbar";
+import Toast from "../components/toast";
+import { Eye, EyeOff } from "lucide-react";
 
 export default function RegisterPage() {
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [message, setMessage] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+
+  const router = useRouter();
+
+  const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    try {
+      const res = await fetch("/api/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ username, email, password }),
+      });
+
+      const data = await res.json();
+
+      if (data.success) {
+        setUsername("");
+        setEmail("");
+        setPassword("");
+
+        localStorage.setItem("token", data.token);
+        router.push("/dashboard");
+      } else {
+        setMessage(data.message || "Error al registrarse");
+      }
+    } catch (err) {
+      console.error("Error:", err);
+      setMessage("Error del servidor");
+    }
+  };
   return (
     <>
       <Navbar />
@@ -13,7 +55,7 @@ export default function RegisterPage() {
                 Registrarse
               </h1>
 
-              <button className="flex items-center justify-center gap-4 border border-gray-800 px-6 py-3 rounded-lg w-[70%] mx-auto mb-6 hover:bg-gray-100 transition">
+              <button className="flex items-center justify-center gap-4 border border-gray-800 px-6 py-3 rounded-lg w-[70%] mx-auto mb-6 hover:bg-gray-100 transition cursor-pointer">
                 <img
                   src="/googleicon.png"
                   alt="Google Logo"
@@ -30,25 +72,45 @@ export default function RegisterPage() {
                 <hr className="flex-grow border-gray-900" />
               </div>
 
-              <form className="flex flex-col gap-4">
+              <form className="flex flex-col gap-4" onSubmit={handleRegister}>
                 <input
                   type="text"
                   placeholder="Nombre"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
                   className="border text-gray-600 border-gray-400 px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-900"
                 />
                 <input
                   type="email"
                   placeholder="Correo electrónico"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   className="border text-gray-600 border-gray-400 px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-900"
                 />
-                <input
-                  type="password"
-                  placeholder="Contraseña"
-                  className="border text-gray-600 border-gray-400 px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-900"
-                />
+                <div className="relative">
+                  <input
+                    type={showPassword ? "text" : "password"}
+                    placeholder="Contraseña"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    className="border text-gray-600 border-gray-400 px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-900 w-full pr-12"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-600 cursor-pointer"
+                  >
+                    {showPassword ? (
+                      <EyeOff className="h-5 w-5" />
+                    ) : (
+                      <Eye className="h-5 w-5" />
+                    )}
+                  </button>
+                </div>
+
                 <button
                   type="submit"
-                  className="bg-rose-600 text-white font-semibold py-3 rounded-lg mt-2 hover:opacity-90 transition"
+                  className="bg-rose-600 text-white font-semibold py-3 rounded-lg mt-2 hover:opacity-90 transition cursor-pointer"
                 >
                   Registrarse
                 </button>
@@ -75,6 +137,9 @@ export default function RegisterPage() {
           </div>
         </div>
       </section>
+      {message && (
+        <Toast message={message} clearMessage={() => setMessage("")} />
+      )}
     </>
   );
 }

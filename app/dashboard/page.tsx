@@ -10,9 +10,15 @@ import {
   Search,
   Trash2,
 } from "lucide-react";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 
 export default function Dashboard() {
+  const router = useRouter();
+  const handleLogout = async () => {
+    await fetch("/api/logout", { method: "POST" });
+    router.replace("/");
+  };
   return (
     <div className="flex h-screen">
       <aside className="bg-sky-900 w-20 flex flex-col justify-between items-center py-6">
@@ -39,7 +45,11 @@ export default function Dashboard() {
           <button className="hover:opacity-80 transition" title="Ayuda">
             <HelpCircle size={24} />
           </button>
-          <button className="hover:opacity-80 transition" title="Salir">
+          <button
+            onClick={handleLogout}
+            className="hover:opacity-80 transition"
+            title="Salir"
+          >
             <LogOut size={24} />
           </button>
         </div>

@@ -1,6 +1,56 @@
+"use client";
+import React, { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import Navbar from "../components/navbar";
+import Toast from "../components/toast";
+import { Eye, EyeOff } from "lucide-react";
 
 export default function LoginPage() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [message, setMessage] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+
+  const router = useRouter();
+
+  useEffect(() => {
+    fetch("/api/dashboard", { credentials: "include" })           
+      .then(res => {
+        if (res.ok) {
+          router.replace("/dashboard");  
+        }
+      })
+      .catch(() => {
+        
+      });
+  }, [router]);
+
+  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    try {
+      const res = await fetch("/api/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await res.json();
+      console.log("Respuesta del servidor:", data); 
+
+      if (data.success) {
+        router.push("/dashboard");
+      } else {
+        setMessage(data.message || "Error al iniciar sesión");
+      }
+    } catch (err) {
+      console.error("Error:", err);
+      setMessage("Error del servidor");
+    }
+  };
   return (
     <>
       <Navbar />
@@ -30,17 +80,34 @@ export default function LoginPage() {
                 <hr className="flex-grow border-gray-900" />
               </div>
 
-              <form className="flex flex-col gap-4">
+              <form className="flex flex-col gap-4" onSubmit={handleLogin}>
                 <input
                   type="email"
                   placeholder="Correo electrónico"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   className="border text-gray-600 border-gray-400 px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-900"
                 />
-                <input
-                  type="password"
-                  placeholder="Contraseña"
-                  className="border text-gray-600 border-gray-400 px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-900"
-                />
+                <div className="relative">
+                  <input
+                    type={showPassword ? "text" : "password"}
+                    placeholder="Contraseña"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    className="border text-gray-600 border-gray-400 px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-900 w-full pr-12"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-600"
+                  >
+                    {showPassword ? (
+                      <EyeOff className="h-5 w-5" />
+                    ) : (
+                      <Eye className="h-5 w-5" />
+                    )}
+                  </button>
+                </div>
                 <a
                   href="#"
                   className="text-sm text-rose-600 hover:underline text-right"
@@ -48,13 +115,12 @@ export default function LoginPage() {
                   ¿Olvidaste tu contraseña?
                 </a>
 
-                <a
-                  href="/dashboard"
+                <button
                   type="submit"
-                  className="bg-rose-600 text-center text-white font-semibold py-3 rounded-lg mt-2 hover:opacity-90 transition"
+                  className="bg-rose-600 text-center text-white font-semibold py-3 rounded-lg mt-2 hover:opacity-90 transition cursor-pointer"
                 >
                   Login
-                </a>
+                </button>
               </form>
             </div>
 
@@ -78,6 +144,7 @@ export default function LoginPage() {
           </div>
         </div>
       </section>
+      <Toast message={message} clearMessage={() => setMessage("")} />
     </>
   );
 }
