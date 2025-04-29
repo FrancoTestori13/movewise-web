@@ -7,7 +7,6 @@ export default function Home() {
 
       <section className="w-full bg-sky-900 py-16 px-6 md:px-20 mt-10">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-start justify-between gap-12">
-          
           <div className=" flex-2 flex items-start justify-center">
             <img
               src="/imghome.png"
@@ -16,13 +15,15 @@ export default function Home() {
             />
           </div>
 
-          <div className="flex-1 items-center text-center justify-start">
+          <div className="flex-1 items-center text-center justify-start pt-10">
             <h1 className=" md:text-5xl font-bold text-white mb-30">
               Organiza tu Mudanza con Eficiencia
             </h1>
-            <div className="bg-white/10 rounded-2xl p-6">
+            <div className="bg-white/10 rounded-2xl p-9">
               <p className="md:text-2xl text-white mb-6">
-                Simplifica tu mudanza con el poder de la inteligencia artificial. Crea inventarios, genera etiquetas QR y mantén todo bajo control.
+                Simplifica tu mudanza con el poder de la inteligencia
+                artificial. Crea inventarios, genera etiquetas QR y mantén todo
+                bajo control.
               </p>
               <a
                 href="/login"
@@ -37,7 +38,6 @@ export default function Home() {
 
       <section className="w-full bg-white py-16 px-6 md:px-20">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-start justify-between gap-12">
-          
           <div className=" flex-2 flex items-start justify-center">
             <img
               src="/imghome2.png"
@@ -52,7 +52,9 @@ export default function Home() {
             </h1>
             <div>
               <p className="md:text-3xl text-neutral-700 mb-6">
-                Los usuarios pueden organizar y clasificar los objetos antes de la mudanza, asegurando que cada artículo esté correctamente identificado y registrado.
+                Los usuarios pueden organizar y clasificar los objetos antes de
+                la mudanza, asegurando que cada artículo esté correctamente
+                identificado y registrado.
               </p>
             </div>
           </div>
@@ -65,7 +67,10 @@ export default function Home() {
             Reconocimiento de Objetos con IA
           </h1>
           <p className="text-2xl text-neutral-700 mb-12">
-            Utilizando inteligencia artificial, la aplicación movil puede identificar y etiquetar automáticamente los objetos dentro de las cajas. Esto ayuda       a crear un inventario preciso sin la necesidad de registrar manualmente cada artículo
+            Utilizando inteligencia artificial, la aplicación movil puede
+            identificar y etiquetar automáticamente los objetos dentro de las
+            cajas. Esto ayuda a crear un inventario preciso sin la necesidad de
+            registrar manualmente cada artículo
           </p>
 
           <div className="flex flex-col md:flex-row justify-center items-center gap-60">
@@ -86,7 +91,6 @@ export default function Home() {
 
       <section className="w-full bg-white py-16 px-6 md:px-20">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-start justify-between gap-12">
-          
           <div className=" flex-2 flex items-start justify-center">
             <img
               src="/imghome3.png"
@@ -101,7 +105,10 @@ export default function Home() {
             </h1>
             <div>
               <p className="md:text-3xl text-neutral-700 mb-6">
-              La aplicación genera etiquetas QR personalizadas para cada caja, las cuales pueden ser impresas y pegadas en las cajas. Estas etiquetas permiten escanear y acceder rápidamente al contenido de cada caja.
+                La aplicación genera etiquetas QR personalizadas para cada caja,
+                las cuales pueden ser impresas y pegadas en las cajas. Estas
+                etiquetas permiten escanear y acceder rápidamente al contenido
+                de cada caja.
               </p>
             </div>
           </div>
@@ -110,21 +117,19 @@ export default function Home() {
       <footer className="w-full bg-sky-900 py-24 px-6 md:px-20">
         <div className="relative max-w-md mx-auto flex flex-col items-center justify-center text-center bg-white p-10 rounded-2xl">
           <img
-            src="/imgqr.png" 
+            src="/imgqr.png"
             alt="Logo"
             className="w-40 h-40 object-contain mb-6"
           />
 
           <a
             href="/descargar"
-            className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 bg-rose-600 text-white px-6 py-3 rounded-lg font-semibold shadow-lg       hover:opacity-90 transition"
+            className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 bg-rose-600 text-white px-6 py-3 rounded-lg shadow-lg hover:bg-rose-700"
           >
             Descargar aplicación
           </a>
         </div>
       </footer>
-
-
     </>
   );
 }
