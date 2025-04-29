@@ -28,8 +28,7 @@ const Toast = ({
 
   return (
     <div
-      className="fixed top-5 left-1/2 transform -translate-x-1/2 bg-white text-red-500 px-6 py-3 rounded-md shadow-lg z-50"
-      style={{ transition: "opacity 0.5s ease-out" }}
+      className="fixed top-5 left-1/2 transform -translate-x-1/2 bg-white text-red-500 px-6 py-3 rounded-md shadow-lg z-50 duration-300 ease-out"
     >
       <strong>{currentMessage}</strong> 
       <button
@@ -37,7 +36,7 @@ const Toast = ({
           setVisible(false);
           clearMessage(); 
         }}
-        className="ml-4 text-gray-700 font-bold"
+        className="ml-4 text-gray-700 font-bold cursor-pointer"
       >
         X
       </button>

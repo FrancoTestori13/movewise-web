@@ -9,7 +9,7 @@ export default function Navbar() {
           <img
             src="/logo.png"
             alt="MoveWise Logo"
-            className="h-11 w-auto cursor-pointer"
+            className="h-12 w-auto cursor-pointer"
           />
         </Link>
       </div>
@@ -17,13 +17,13 @@ export default function Navbar() {
       <div className="flex items-center space-x-4">
         <a
           href="/login"
-          className="text-white px-4 py-2 rounded-lg font-semibold hover:opacity-70 transition"
+          className="text-white px-4 py-2 rounded-lg text-lg hover:opacity-70 transition"
         >
           Login
         </a>
         <a
-          href="/descargar"
-          className="bg-rose-600 text-white px-4 py-2 rounded-lg font-semibold hover:opacity-90 transition"
+          href="/"
+          className="bg-rose-600 text-white px-4 py-2 rounded-lg text-1xl hover:opacity-90 transition"
         >
           Descargar
         </a>
