@@ -17,7 +17,7 @@ export default function Home() {
 
           <div className="flex-1 items-center text-center justify-start pt-10">
             <h1 className=" md:text-5xl font-bold text-white mb-30">
-              Organiza tu Mudanza con Eficiencia
+              Organiza tu mudanza con eficiencia
             </h1>
             <div className="bg-white/10 rounded-2xl p-9">
               <p className="md:text-2xl text-white mb-6">
@@ -48,7 +48,7 @@ export default function Home() {
 
           <div className="flex-1 items-center">
             <h1 className="md:text-5xl font-bold text-rose-600 mb-30">
-              Registro de Cajas, Mobiliario y Objetos
+              Registro de cajas, mobiliario y objetos
             </h1>
             <div>
               <p className="md:text-3xl text-neutral-700 mb-6">
@@ -64,7 +64,7 @@ export default function Home() {
       <section className="w-full bg-white py-20 px-6 md:px-20">
         <div className="max-w-7xl mx-auto text-center">
           <h1 className="text-5xl font-bold text-rose-600 mb-6">
-            Reconocimiento de Objetos con IA
+            Reconocimiento de objetos con IA
           </h1>
           <p className="text-2xl text-neutral-700 mb-12">
             Utilizando inteligencia artificial, la aplicación movil puede
@@ -101,7 +101,7 @@ export default function Home() {
 
           <div className="flex-1 items-center">
             <h1 className="md:text-5xl font-bold text-rose-600 mb-30">
-              Generación de Etiquetas QR
+              Generación de etiquetas QR
             </h1>
             <div>
               <p className="md:text-3xl text-neutral-700 mb-6">
