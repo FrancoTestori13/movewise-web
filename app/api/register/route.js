@@ -3,13 +3,13 @@ import { hashPassword } from "@/lib/auth";
 import pool from "@/lib/db";
 import { NextResponse } from "next/server";
 import jwt from "jsonwebtoken";
+import * as cookie from "cookie";
 
-const JWT_TOKEN = process.env.JWT_TOKEN || "clave-muy-secreta";
+const JWT_TOKEN = process.env.JWT_TOKEN;
 
 export async function POST(req) {
   try {
-    const body = await req.json();
-    const { username, email, password } = body;
+    const { username, email, password } = await req.json();
 
     if (!username || !email || !password) {
       return NextResponse.json(
@@ -36,11 +36,28 @@ export async function POST(req) {
       [username, email, hashedPassword]
     );
 
-    const token = jwt.sign({ userId: result.rows[0].id }, JWT_TOKEN, {
+    const userId = result.rows[0].id;
+
+    const token = jwt.sign({ userId, email }, JWT_TOKEN, {
       expiresIn: "7d",
     });
 
-    return NextResponse.json({ success: true, userId: result.rows[0].id, token });
+    const serialized = cookie.serialize("token", token, {
+      httpOnly: true,
+      secure: false, 
+      sameSite: "Strict",
+      maxAge: 60 * 60 * 24 * 7, 
+      path: "/",
+    });
+    
+    const response = NextResponse.json(
+      { success: true, userId, token },
+      { status: 200 }
+    );
+
+    response.headers.set("Set-Cookie", serialized);
+
+    return response;
   } catch (error) {
     console.error("Error al registrar usuario:", error);
     return NextResponse.json(

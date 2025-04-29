@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Navbar from "../components/navbar";
 import Toast from "../components/toast";
@@ -14,6 +14,18 @@ export default function RegisterPage() {
 
   const router = useRouter();
 
+  useEffect(() => {
+      fetch("/api/dashboard", { credentials: "include" })           
+        .then(res => {
+          if (res.ok) {
+            router.replace("/dashboard");  
+          }
+        })
+        .catch(() => {
+          
+        });
+    }, [router]);
+
   const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -23,17 +35,18 @@ export default function RegisterPage() {
         headers: {
           "Content-Type": "application/json",
         },
+        credentials: "include",
         body: JSON.stringify({ username, email, password }),
       });
 
       const data = await res.json();
+      console.log("Respuesta del servidor:", data); 
 
       if (data.success) {
         setUsername("");
         setEmail("");
         setPassword("");
 
-        localStorage.setItem("token", data.token);
         router.push("/dashboard");
       } else {
         setMessage(data.message || "Error al registrarse");
